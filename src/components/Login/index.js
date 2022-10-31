@@ -23,6 +23,21 @@ export default function Login() {
     }
   };
 
+  const handleGGLogin = async () => {
+    const { user, _tokenResponse } = await signInWithPopup(auth, fbProvider);
+    if (_tokenResponse?.isNewUser) {
+      const { displayName, email, uid, providerId, photoURL } = user;
+      addDocument("users", {
+        displayName,
+        email,
+        uid,
+        photoURL,
+        providerId,
+        keywords: generateKeywords(user.displayName),
+      });
+    }
+  };
+
   return (
     <div>
       <Row justify="center" style={{ height: 800 }}>
@@ -30,7 +45,7 @@ export default function Login() {
           <Title style={{ textAlign: "center" }} level={3}>
             App chat
           </Title>
-          <Button style={{ width: "100%", marginBottom: 5 }}>
+          <Button style={{ width: "100%", marginBottom: 5 }}  onClick={handleGGLogin}>
             Đăng nhập bằng Google
           </Button>
           <Button style={{ width: "100%" }} onClick={handleFBLogin}>

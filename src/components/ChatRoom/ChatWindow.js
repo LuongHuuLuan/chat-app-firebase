@@ -95,7 +95,7 @@ export default function ChatWindow() {
     }),
     [selectedRoom.id]
   );
-  const messages = useFirestore("messages");
+  const messages = useFirestore("messages", condition);
 
   return (
     <WrapperStyled>

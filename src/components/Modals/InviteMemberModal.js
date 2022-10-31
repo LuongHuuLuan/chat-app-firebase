@@ -28,7 +28,7 @@ function DebounceSelect({ fetchOptions, debounceTimeout = 300, ...props }) {
       });
     };
     return debounce(loadOptions, debounceTimeout);
-  }, [debounceTimeout, fetchOptions]);
+  }, [debounceTimeout, fetchOptions, props.curmembers]);
   return (
     <Select
       labelInValue
@@ -92,7 +92,6 @@ export default function InviteMemberModal() {
     form.resetFields();
     setIsInviteMemberVisible(false);
   };
-  console.log({ value });
   return (
     <div>
       <Modal
